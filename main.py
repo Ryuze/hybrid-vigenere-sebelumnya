@@ -21,7 +21,7 @@ def encrypt(plaintext, key, e, n):
     start = time.perf_counter()
     generateRsaKey()
     ciphertext, strech_key = vigenere.encrypt(plaintext, key)
-    key_enc = rsa.enc(strech_key, e, n)
+    key_enc = rsa.enc(key, e, n)
     stop = time.perf_counter()
     
     print(f"Encrypt used time: {stop - start:0.4f} seconds")
@@ -45,4 +45,4 @@ e, n, d = rsa.generateKey()
 ciphertext, key = encrypt(plaintext, "ASDR", e, n)
 decrypt = decrypt(ciphertext, key, d, n)
 
-print(ciphertext)
+print(decrypt)

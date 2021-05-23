@@ -33,10 +33,17 @@ def encrypt(plaintext, initial_key):
 
 def decrypt(ciphertext, key):
     table = __originalTable()
+    tempKey = key
     plain = []
     
+    rounds = len(ciphertext) / len(key)
+    start = 1
+    while start < rounds:
+        tempKey += key
+        start += 1
+    
     for index in range(len(ciphertext)):
-        calculate = (table.index(ciphertext[index]) - table.index(key[index])) % 26
+        calculate = (table.index(ciphertext[index]) - table.index(tempKey[index])) % 26
         plain.append(table[calculate])
     
     return ''.join(plain)
